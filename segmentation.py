@@ -19,7 +19,7 @@ model.eval()  # Set the model to evaluation mode
 import matplotlib.pyplot as plt
 
 
-def segment_image(image_path, model):
+def segment_image(image, model):
     # Define transformations to preprocess the input image
     transform = transforms.Compose([
         transforms.Grayscale(),  # Convert to grayscale
@@ -28,7 +28,6 @@ def segment_image(image_path, model):
     ])
 
     # Load and preprocess the input image
-    image = Image.open(image_path)
     image = transform(image).unsqueeze(0)  # Add batch dimension
 
     # Perform segmentation
