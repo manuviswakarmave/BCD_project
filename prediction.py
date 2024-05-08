@@ -45,9 +45,4 @@ def predict(image):
 
     return prediction[0]
 
-# Example usage:
-image_path = 'resized_images/normal/images/normal (1).png'
-segmented_mask = segmentation.segment_image(image_path, segmentation_model)
-input_data = Image.fromarray(segmented_mask)
-prediction = predict(input_data.convert('RGB'))
-print(f'Prediction: {prediction}')
+
