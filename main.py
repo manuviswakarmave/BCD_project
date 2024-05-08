@@ -1,6 +1,6 @@
 import io
 
-import torch
+
 import uvicorn
 from fastapi import FastAPI, File, UploadFile, APIRouter
 from fastapi.responses import JSONResponse
@@ -9,16 +9,10 @@ from PIL import Image
 import base64
 
 import segmentation
-import segmentation_models_pytorch as smp
-
 from prediction import predict
 
 # Load the trained segmentation model model
-segmentation_model = smp.Unet('resnet34', encoder_weights=None, in_channels=1,
-                              classes=1)  # Define the same architecture as during training
-segmentation_model.load_state_dict(
-    torch.load('segmentation_model.pth', map_location=torch.device('cpu')))  # Load the trained weights
-segmentation_model.eval()  # Set the model to evaluation mode
+segmentation_model = segmentation.load_segmentation_model("segmentation_model.pth")
 
 app = FastAPI()
 prediction_router = APIRouter(prefix="/BreastCancerPrediction", tags=["Prediction Controller"])

@@ -1,16 +1,12 @@
 import os
-import numpy as np
-import torch
 import matplotlib.pyplot as plt
 from PIL import Image
 import segmentation
 from prediction import predict
-import segmentation_models_pytorch as smp
+
 
 # Load the trained model
-model = smp.Unet('resnet34', encoder_weights=None, in_channels=1, classes=1)
-model.load_state_dict(torch.load('segmentation_model.pth', map_location=torch.device('cpu')))
-model.eval()
+model = segmentation.load_segmentation_model("segmentation_model.pth")
 
 
 # Function to load and preprocess image

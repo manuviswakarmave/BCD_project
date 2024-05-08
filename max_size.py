@@ -1,4 +1,4 @@
-import torch
+
 from torchvision import datasets
 
 # Define the folder containing the images
